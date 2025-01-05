@@ -11,7 +11,7 @@ router.get("/signup", function (req, res) {
   return res.render("signup");
 });
 
-router.get("/logout", function(req,res){
+router.get("/logout", function(req,res){     
   res.clearCookie("token").redirect("/")
 })
 
