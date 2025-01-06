@@ -2,6 +2,18 @@
 
 **The Writing Corner** is a blogging platform where users can create, share, and explore blogs effortlessly. It enables writers and readers to interact in a user-friendly, feature-rich environment. 
 
+## Sign Up
+![SignUp Page](screenshots/SignUp.png)
+
+### Home Page
+![Home Page](screenshots/Home.png)
+
+### Add Blog
+![Add Blog](screenshots/addblog.png)
+
+### Blog Section
+![Blog Section](screenshots/BlogPage.png)
+
 ## Features
 
 - **User Authentication**: Secure sign-up and login functionality.
