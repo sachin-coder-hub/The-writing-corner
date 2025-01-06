@@ -1,0 +1,53 @@
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include("./partials/nav") %>
+    <div class="container mt-4">
+      <h1><%= blog?.title || "Untitled Blog" %></h1>
+      <% if (blog?.coverImgUrl) { %>
+      <img src="<%= blog.coverImgUrl %>" width="700px" />
+      <% } %>
+      <pre class="mt-3"><%= blog?.body || "No content available." %></pre>
+    </div>
+    <div class="container mt-4">
+      <% if (blog?.createdBy) { %>
+      <img
+        class="m-2 mb-4"
+        src="<%= blog.createdBy.profileImgUrl %>"
+        width="50px"
+      />
+      <%= blog.createdBy.fullname || "Unknown Author" %> <% } else { %>
+      <p>Author information not available.</p>
+      <% } %>
+    </div>
+    <div class="container mt-3">
+      <h1>Comments (<%= comments?.length || 0 %>)</h1>
+      <% if (locals.user) { %>
+      <form action="/blog/comment/<%= blog?._id %>" method="post">
+        <div class="mb-3">
+          <input
+            type="text"
+            name="content"
+            class="form-control"
+            placeholder="Enter your comment"
+          />
+          <button class="btn btn-sm btn-primary mt-2" type="submit">Add</button>
+        </div>
+      </form>
+      <% } %>
+      <div class="mt-3">
+        <% comments.forEach(comment => { %>
+        <div>
+          <img src="<%= comment?.createdBy?.profileImgUrl%>" width="50px" />
+          <%= comment?.createdBy?.fullname%>
+          <pre><%= comment?.content || "No comment content available." %></pre>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <%- include("./partials/scripts") %>
+  </body>
+</html>

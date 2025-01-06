@@ -1,6 +1,6 @@
 const { createHmac, randomBytes } = require("node:crypto");
 const { Schema, model } = require("mongoose");
-const {createTokenForUser} = require("../utils/authentication")
+const { createTokenForUser } = require("../utils/authentication");
 
 const userSchema = new Schema(
   {
@@ -22,7 +22,7 @@ const userSchema = new Schema(
     },
     profileImgUrl: {
       type: String,
-      default: "./images/default.png",
+      default: "/images/default.png",
     },
     role: {
       type: String,
@@ -58,12 +58,11 @@ userSchema.static("matchPasswordAndGenToken", async function (email, password) {
     .update(password)
     .digest("hex");
 
-
   if (hashedPassword !== userProvidedPassword)
     throw new Error("Incorrect password");
 
   const token = createTokenForUser(user);
-  return token
+  return token;
 });
 
 const User = model("user", userSchema);

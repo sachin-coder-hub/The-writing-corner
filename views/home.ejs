@@ -2,22 +2,47 @@
 <html lang="en">
   <head>
     <%- include("./partials/head") %>
-    <title>Home page</title>
+    <title>Home Page</title>
+    <style>
+      .card {
+        width: 18rem;
+        height: 20rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .card-img-top {
+        height: 12rem;
+        object-fit: cover;
+      }
+
+      .card-title {
+        white-space: wrap;
+      }
+    </style>
   </head>
   <body>
     <%- include("./partials/nav") %>
     <div class="container mt-3">
-      <% blogs.forEach(blog =>{%>
-      <div class="card" style="width: 18rem">
-        <img src="<%= blog.coverImgUrl%>" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title"><%= blog.title %></h5>
-          <a href="/blog/<%=blog._id %>" class="btn btn-primary">View</a>
+      <div class="row row-cols-3 g-3">
+        <% blogs.forEach(blog => { %>
+        <div class="col">
+          <div class="card">
+            <img 
+              src="<%= blog.coverImgUrl %>" 
+              class="card-img-top" 
+              alt="Blog Cover" 
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= blog.title %></h5>
+              <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
+        <% }) %>
       </div>
-      <%})%>
     </div>
 
-    <%-include("./partials/scripts") %>
+    <%- include("./partials/scripts") %>
   </body>
 </html>
